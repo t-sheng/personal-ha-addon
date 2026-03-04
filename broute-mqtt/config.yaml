@@ -1,0 +1,68 @@
+name: "BRoute-Mqtt"
+description: "[For Japan] Integrate low-voltage smart energy meters into Home Assistant's MQTT as devices/sensors via the Wi-SUN dongle and ECHONET Lite protocol."
+version: "1.0.10"
+slug: "broute_mqtt"
+url: "https://github.com/hsakoh/broute-mqtt"
+startup: application
+boot: manual
+init: false
+image: ghcr.io/hsakoh/broutemqtt-v1.0.10
+arch:
+  - aarch64
+  - amd64
+devices:
+  - '/dev/ttyUSB0'
+services:
+  - 'mqtt:need'
+options:
+  BRoute: 
+    Id: ''
+    Pw: ''
+    SerialPort: '/dev/ttyUSB0'
+    UseBP35C0Commands: false
+    ForcePANScan: false
+    PanDescSavePath: '/data/EPANDESC.json'
+    InstantaneousValueInterval: '00:01:10'
+    PanScanMaxRetryAttempts: 3
+    PanScanRetryDelay: '00:01:00'
+    PanaConnectTimeout: '00:00:30'
+    PanaConnectMaxRetryAttempts: 3
+    PanaConnectRetryDelay: '00:01:00'
+    PropertyReadTimeout: '00:00:05'
+    PropertyReadMaxRetryAttempts: 3
+    PropertyReadRetryDelay: '00:00:05'
+    ContinuePollingOnError: true
+  Mqtt: 
+    AutoConfig: true
+    Host: ''
+    Port: 1883
+    Id: ''
+    Pw: ''
+    Tls: false
+  LogLevel: 'Trace'
+schema:
+  BRoute: 
+    Id: str
+    Pw: password
+    SerialPort: str
+    UseBP35C0Commands: bool
+    ForcePANScan: bool
+    PanDescSavePath: str
+    InstantaneousValueInterval: str
+    PanScanMaxRetryAttempts: int
+    PanScanRetryDelay: str
+    PanaConnectTimeout: str
+    PanaConnectMaxRetryAttempts: int
+    PanaConnectRetryDelay: str
+    PropertyReadTimeout: str
+    PropertyReadMaxRetryAttempts: int
+    PropertyReadRetryDelay: str
+    ContinuePollingOnError: bool
+  Mqtt: 
+    AutoConfig: bool
+    Host: str?
+    Port: "int(0,65535)?"
+    Id: str?
+    Pw: password?
+    Tls: bool?
+  LogLevel: list(Trace|Debug|Information|Warning|Error|Critical|None)
