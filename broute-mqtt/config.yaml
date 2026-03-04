@@ -7,9 +7,6 @@ startup: application
 boot: manual
 init: false
 image: ghcr.io/hsakoh/broutemqtt-aarch64:1.0.10
-arch:
-  - aarch64
-  - amd64
 devices:
   - '/dev/ttyUSB0'
 services:
