@@ -6,7 +6,7 @@ url: "https://github.com/hsakoh/broute-mqtt"
 startup: application
 boot: manual
 init: false
-image: ghcr.io/hsakoh/broutemqtt-amd64:1.0.11
+image: ghcr.io/hsakoh/broutemqtt-amd64:1.0.9
 devices:
   - '/dev/ttyUSB0'
 services:
